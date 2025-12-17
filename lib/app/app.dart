@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'app_theme.dart';
+
 class CraftyBayApp extends StatefulWidget {
   const CraftyBayApp({super.key});
 
@@ -19,7 +20,9 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=> LanguageProvider()),
+        ChangeNotifierProvider(
+          create: (_) => LanguageProvider()..loadInitialLanguage(),
+        ),
       ],
       child: Consumer<LanguageProvider>(
         builder: (context, LanguageProvider, child) {
@@ -35,13 +38,10 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: [
-              Locale('en'),
-              Locale('bn'),
-            ],
+            supportedLocales: [Locale('en'), Locale('bn')],
             locale: LanguageProvider.currentLocale,
           );
-        }
+        },
       ),
     );
   }

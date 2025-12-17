@@ -4,6 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LanguageProvider extends ChangeNotifier{
   Locale _currentLocale = Locale("en");
   Locale get currentLocale => _currentLocale;
+
+
+  Future<void> loadInitialLanguage() async{
+    Locale locale = await _getLocale();
+    _currentLocale = locale;
+    notifyListeners();
+  }
+
   void  changeLocale(Locale newLocale){
     if(_currentLocale == newLocale) return;
     _currentLocale = newLocale;
