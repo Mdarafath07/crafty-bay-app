@@ -1,6 +1,10 @@
 import 'package:crafty_bay/app/app_routes.dart';
+import 'package:crafty_bay/app/providers/language_provider.dart';
 import 'package:crafty_bay/features/screens/splash_screen.dart';
+import 'package:crafty_bay/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'app_theme.dart';
 class CraftyBayApp extends StatefulWidget {
@@ -13,12 +17,32 @@ class CraftyBayApp extends StatefulWidget {
 class _CraftyBayAppState extends State<CraftyBayApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: SplashScreen.name,
-      onGenerateRoute: AppRoutes.route,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: .dark,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> LanguageProvider()),
+      ],
+      child: Consumer<LanguageProvider>(
+        builder: (context, LanguageProvider, child) {
+          return MaterialApp(
+            initialRoute: SplashScreen.name,
+            onGenerateRoute: AppRoutes.route,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: .system,
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [
+              Locale('en'),
+              Locale('bn'),
+            ],
+            locale: LanguageProvider.currentLocale,
+          );
+        }
+      ),
     );
   }
 }
