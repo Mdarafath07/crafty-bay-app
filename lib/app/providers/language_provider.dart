@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageProvider extends ChangeNotifier{
+  final String _localeKey = 'locale';
   Locale _currentLocale = Locale("en");
   Locale get currentLocale => _currentLocale;
 
@@ -21,11 +22,11 @@ class LanguageProvider extends ChangeNotifier{
 
   Future<void> _saveLocal(String locale) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString("locale", locale);
+    await sharedPreferences.setString(_localeKey, locale);
   }
   Future<Locale> _getLocale() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-   String savedLocale = sharedPreferences.getString("locale") ?? "en";
+   String savedLocale = sharedPreferences.getString(_localeKey) ?? "en";
    return Locale(savedLocale);
   }
 

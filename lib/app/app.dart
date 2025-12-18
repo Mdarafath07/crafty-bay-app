@@ -1,5 +1,6 @@
 import 'package:crafty_bay/app/app_routes.dart';
 import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/providers/theme_provider.dart';
 import 'package:crafty_bay/features/screens/splash_screen.dart';
 import 'package:crafty_bay/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -23,23 +24,31 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
         ChangeNotifierProvider(
           create: (_) => LanguageProvider()..loadInitialLanguage(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider()..loadInitialThemeMode(),
+        ),
       ],
       child: Consumer<LanguageProvider>(
-        builder: (context, LanguageProvider, child) {
-          return MaterialApp(
-            initialRoute: SplashScreen.name,
-            onGenerateRoute: AppRoutes.route,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: .system,
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: [Locale('en'), Locale('bn')],
-            locale: LanguageProvider.currentLocale,
+        builder: (context, languageProvider, child) {
+          return Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) {
+              return MaterialApp(
+                initialRoute: SplashScreen.name,
+                onGenerateRoute: AppRoutes.route,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: themeProvider.currentThemeMode,
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: [Locale('en'), Locale('bn')],
+                locale: languageProvider.currentLocale,
+              );
+            }
           );
         },
       ),
