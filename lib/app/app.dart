@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../features/auth/screens/splash_screen.dart';
+
+import '../features/auth/presentation/screens/splash_screen.dart';
 import 'app_theme.dart';
 
 class CraftyBayApp extends StatefulWidget {

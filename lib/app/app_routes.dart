@@ -1,8 +1,9 @@
-import 'package:crafty_bay/features/auth/screens/sing_up_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../features/auth/screens/splash_screen.dart';
+import '../features/auth/presentation/screens/sing_up_screen.dart';
+import '../features/auth/presentation/screens/splash_screen.dart';
 
 
 class AppRoutes {

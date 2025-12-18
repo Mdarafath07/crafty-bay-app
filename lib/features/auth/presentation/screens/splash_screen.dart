@@ -1,7 +1,10 @@
 import 'package:crafty_bay/app/assets_path.dart';
-import 'package:crafty_bay/features/auth/screens/sing_up_screen.dart';
+import 'package:crafty_bay/features/auth/presentation/screens/sing_up_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../widgets/app_logo.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -33,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(mainAxisAlignment: .center,
           children: [
             const Spacer(),
-            SvgPicture.asset(AssetsPath.logoSvg),
+            AppLogo(),
             const Spacer(),
             const CircularProgressIndicator(),
             const SizedBox(
@@ -46,3 +49,5 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
