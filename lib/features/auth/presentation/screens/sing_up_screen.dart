@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
+import 'otp_verification_screen.dart';
 
 class SingUpScreen extends StatefulWidget {
   const SingUpScreen({super.key});
@@ -143,7 +144,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
   }
 
   void _onTapSignUpButton() {
-    Navigator.pushNamed(context, SingUpScreen.name);
+    Navigator.pushNamed(context, OtpVerificationScreen.name);
   }
 
   void _onTapSignInButton() {

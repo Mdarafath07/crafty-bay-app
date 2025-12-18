@@ -12,6 +12,7 @@ class AppTheme {
         color: AppColors.themeColor
       ),
       inputDecorationTheme: _getInputDecorationTheme(),
+      filledButtonTheme: _getFilledButtonThemeData(),
 
     );
   }
@@ -24,6 +25,7 @@ class AppTheme {
             color: AppColors.themeColor
         ),
       inputDecorationTheme: _getInputDecorationTheme(),
+      filledButtonTheme: _getFilledButtonThemeData(),
 
     );
   }
@@ -38,6 +40,21 @@ class AppTheme {
           borderSide: BorderSide(color: AppColors.themeColor, width: 2)),
       errorBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: Colors.red),
+      ),
+    );
+
+  }
+  static FilledButtonThemeData _getFilledButtonThemeData() {
+    return FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+          fixedSize: Size.fromWidth(double.maxFinite),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          backgroundColor: AppColors.themeColor,
+          textStyle: TextStyle(
+              fontWeight: .w700
+          )
       ),
     );
   }

@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sing_in_screen.dart';
 import '../features/auth/presentation/screens/sing_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
@@ -17,6 +18,8 @@ class AppRoutes {
       widget = SingUpScreen();
     }else if(setting.name == SignInScreen.name){
       widget = SignInScreen();
+    }else if(setting.name == OtpVerificationScreen.name){
+      widget = OtpVerificationScreen();
     }
     return MaterialPageRoute(builder: (ctx)=> widget);
   }
