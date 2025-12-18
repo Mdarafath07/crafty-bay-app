@@ -1,5 +1,7 @@
+import 'package:crafty_bay/features/auth/presentation/screens/sing_in_screen.dart';
 import 'package:crafty_bay/features/auth/presentation/widgets/app_logo.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 
@@ -33,7 +35,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     "Sign Up",
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -101,7 +102,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
-
                     decoration: const InputDecoration(hintText: "City"),
                     validator: (String? value) {
                       if (value?.trim().isEmpty ?? true) {
@@ -111,16 +111,26 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // TODO: API Call
-                        }
-                      },
-                      child: const Text("Next"),
+                  FilledButton(
+                    onPressed: _onTapSignUpButton,
+                    child: Text('Sign Up'),
+                  ),
+                  SizedBox(height: 10,),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontWeight: FontWeight.w400,color: Colors.grey),
+                      text: 'Already have an account? ',
+                      children: [
+                        TextSpan(
+                          style: TextStyle(
+                            color: AppColors.themeColor,
+                            fontWeight: .bold,
+                          ),
+                          text: 'Sign In',
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = _onTapSignInButton,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -132,5 +142,11 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 
+  void _onTapSignUpButton() {
+    Navigator.pushNamed(context, SingUpScreen.name);
+  }
 
+  void _onTapSignInButton() {
+    Navigator.pushNamed(context, SignInScreen.name);
+  }
 }
