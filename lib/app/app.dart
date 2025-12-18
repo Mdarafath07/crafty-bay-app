@@ -1,12 +1,13 @@
 import 'package:crafty_bay/app/app_routes.dart';
 import 'package:crafty_bay/app/providers/language_provider.dart';
 import 'package:crafty_bay/app/providers/theme_provider.dart';
-import 'package:crafty_bay/features/screens/splash_screen.dart';
+
 import 'package:crafty_bay/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../features/auth/screens/splash_screen.dart';
 import 'app_theme.dart';
 
 class CraftyBayApp extends StatefulWidget {

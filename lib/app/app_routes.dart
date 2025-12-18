@@ -1,14 +1,18 @@
+import 'package:crafty_bay/features/auth/screens/sing_up_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../features/screens/splash_screen.dart';
+import '../features/auth/screens/splash_screen.dart';
+
 
 class AppRoutes {
   static Route<dynamic> route(RouteSettings setting){
-     Widget widget = SizedBox();
+    late Widget widget ;
 
-    if(setting.name ==SplashScreen.name){
+    if(setting.name == SplashScreen.name){
       widget = SplashScreen();
+    }else if(setting.name == SingUpScreen.name){
+      widget = SingUpScreen();
     }
     return MaterialPageRoute(builder: (ctx)=> widget);
   }
