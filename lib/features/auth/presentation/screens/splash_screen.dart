@@ -4,8 +4,8 @@ import 'package:crafty_bay/features/auth/presentation/screens/sing_up_screen.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../common/presentation/screens/main_nav_holder_screen.dart';
 import '../widgets/app_logo.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
-
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -25,29 +24,30 @@ class _SplashScreenState extends State<SplashScreen> {
     _moveToNextScreen();
   }
 
-  Future<void> _moveToNextScreen() async{
+  Future<void> _moveToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushNamedAndRemoveUntil(context, SingUpScreen.name,(predicates) => false,);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      MainNavHolderScreen.name,
+      (predicates) => false,
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(mainAxisAlignment: .center,
+        child: Column(
+          mainAxisAlignment: .center,
           children: [
             const Spacer(),
             AppLogo(),
             const Spacer(),
             const CircularProgressIndicator(),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
           ],
-        
         ),
       ),
     );
   }
 }
-
-

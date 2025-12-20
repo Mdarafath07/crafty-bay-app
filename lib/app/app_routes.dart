@@ -6,6 +6,7 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sing_in_screen.dart';
 import '../features/auth/presentation/screens/sing_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/common/presentation/screens/main_nav_holder_screen.dart';
 
 
 class AppRoutes {
@@ -20,6 +21,8 @@ class AppRoutes {
       widget = SignInScreen();
     }else if(setting.name == OtpVerificationScreen.name){
       widget = OtpVerificationScreen();
+    }else if(setting.name == MainNavHolderScreen.name){
+      widget = MainNavHolderScreen();
     }
     return MaterialPageRoute(builder: (ctx)=> widget);
   }

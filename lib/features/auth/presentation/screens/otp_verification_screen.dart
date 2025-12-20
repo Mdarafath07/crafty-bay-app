@@ -118,7 +118,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   void _onTapNextButton() {
-    // Verification Logic
+
   }
 
   @override
