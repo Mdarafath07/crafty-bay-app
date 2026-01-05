@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/common/presentation/providers/main_nav_controler_provider.dart';
 import 'app_theme.dart';
 
 class CraftyBayApp extends StatefulWidget {
@@ -29,6 +30,7 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
         ChangeNotifierProvider(
           create: (_) => ThemeProvider()..loadInitialThemeMode(),
         ),
+        ChangeNotifierProvider(create: (_) => MainNavControlerProvider())
       ],
       child: Consumer<LanguageProvider>(
         builder: (context, languageProvider, child) {

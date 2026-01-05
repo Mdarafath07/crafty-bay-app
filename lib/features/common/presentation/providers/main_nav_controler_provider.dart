@@ -1,0 +1,14 @@
+import 'package:flutter/cupertino.dart';
+
+class MainNavControlerProvider extends ChangeNotifier {
+  int _selectedIndex = 0;
+  int get selectedIndex => _selectedIndex;
+  void changeItem(int index){
+    if(_selectedIndex == index) return;
+    _selectedIndex = index;
+    notifyListeners();
+  }
+
+
+
+}
