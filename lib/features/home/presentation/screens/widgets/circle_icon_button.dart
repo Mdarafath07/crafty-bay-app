@@ -12,7 +12,7 @@ class CircleIconButton extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
         radius: 16,
-        backgroundColor: Colors.grey.withAlpha(35),
+        backgroundColor: Colors.grey.withAlpha(30),
 
         child: Icon(icon, color: Colors.grey),
       ),
