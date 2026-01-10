@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../app/constants.dart';
 import '../../../common/presentation/widget/category_card.dart';
+import '../../../common/presentation/widget/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
+            spacing: 6,
             children: [
               ProductScarchField(),
               HomeCarouselSlider(),
@@ -39,90 +41,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               _buildCategoryList(),
-              SactionHeader(title: 'Popular', onTapSeeAll: () {}),
-              SizedBox(
-                width: 160,
-                child: Card(
-                  elevation: 3,
-                  shadowColor: AppColors.themeColor.withAlpha(50),
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    spacing: 6,
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: .circular(8),
-                            topLeft: .circular(8),
-                          ),
-                          color: AppColors.themeColor.withAlpha(40),
-                          image: DecorationImage(
-                            image: AssetImage(AssetsPath.dummyImagePng),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              "NIKE shoe - new Arrival",
-                              maxLines: 1,
-                              style: TextStyle(overflow: .ellipsis),
-                            ),
-                            Row(
-                              mainAxisAlignment: .spaceBetween,
-                              children: [
-                                Text(
-                                  "${Constants.takaSign}200",
-                                  style: TextStyle(
-                                    fontWeight: .w600,
-                                    color: AppColors.themeColor,
-                                  ),
-                                ),
-                                Wrap(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                      size: 20,
-                                    ),
-                                    Text("4.4"),
-                                  ],
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: .circular(4),
-                                  ),
-                                  color: AppColors.themeColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      size: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              SactionHeader(
+                  title: 'Popular', onTapSeeAll: () {}),
+              _buildPopularProductList(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildPopularProductList() {
+    return SizedBox(
+              height: 170,
+              child: ListView.builder(
+                scrollDirection:  .horizontal,
+                itemBuilder: (context, insdex) {
+                  return ProductCard();
+                },
+              ),
+            );
   }
 
   SizedBox _buildCategoryList() {
