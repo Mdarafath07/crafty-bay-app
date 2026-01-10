@@ -8,6 +8,11 @@ class MainNavControlerProvider extends ChangeNotifier {
     _selectedIndex = index;
     notifyListeners();
   }
+  void changeToCategories(){
+    changeItem(1);
+  }  void backToHome(){
+    changeItem(0);
+  }
 
 
 
