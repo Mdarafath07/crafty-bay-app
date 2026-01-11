@@ -7,6 +7,7 @@ import '../features/auth/presentation/screens/sing_in_screen.dart';
 import '../features/auth/presentation/screens/sing_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/common/presentation/screens/main_nav_holder_screen.dart';
+import '../features/product/presentation/screens/product_list_by_category_screen.dart';
 
 
 class AppRoutes {
@@ -23,6 +24,8 @@ class AppRoutes {
       widget = OtpVerificationScreen();
     }else if(setting.name == MainNavHolderScreen.name){
       widget = MainNavHolderScreen();
+    }else if(setting.name == ProductListByCategoryScreen.name){
+      widget = ProductListByCategoryScreen();
     }
     return MaterialPageRoute(builder: (ctx)=> widget);
   }

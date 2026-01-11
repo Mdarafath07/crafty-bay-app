@@ -44,6 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SactionHeader(
                   title: 'Popular', onTapSeeAll: () {}),
               _buildPopularProductList(),
+              SactionHeader(
+                  title: 'Special', onTapSeeAll: () {}),
+              _buildPopularProductList(),
+              SactionHeader(
+                  title: 'New', onTapSeeAll: () {}),
+              _buildPopularProductList(),
             ],
           ),
         ),
