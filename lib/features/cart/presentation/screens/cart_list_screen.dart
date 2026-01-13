@@ -41,44 +41,39 @@ class _CartListScreenState extends State<CartListScreen> {
 
   Container _buildTotalPriceAndChackuotSection(TextTheme textTheme) {
     return Container(
-          padding: .all(16),
-          decoration: BoxDecoration(
-            color: AppColors.themeColor.withAlpha(50),
-            borderRadius: .only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: .spaceBetween,
+      padding: .all(16),
+      decoration: BoxDecoration(
+        color: AppColors.themeColor.withAlpha(50),
+        borderRadius: .only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: .spaceBetween,
+
+        children: [
+          Column(
+            crossAxisAlignment: .start,
 
             children: [
-              Column(
-                crossAxisAlignment: .start,
-
-                children: [
-                  Text("Total Price", style: textTheme.bodyLarge),
-                  Text(
-                    "${Constants?.takaSign}500",
-                    style: textTheme.titleMedium?.copyWith(
-                      fontWeight: .w600,
-                      color: AppColors.themeColor,
-                    ),
-                  ),
-                ],
-              ),
-              Column(),
-              SizedBox(
-                width: 120,
-                child: FilledButton(
-                  onPressed: () {},
-                  child: Text("Checkout"),
+              Text("Total Price", style: textTheme.bodyLarge),
+              Text(
+                "${Constants?.takaSign}500",
+                style: textTheme.titleMedium?.copyWith(
+                  fontWeight: .w600,
+                  color: AppColors.themeColor,
                 ),
               ),
             ],
           ),
-        );
+          Column(),
+          SizedBox(
+            width: 120,
+            child: FilledButton(onPressed: () {}, child: Text("Checkout")),
+          ),
+        ],
+      ),
+    );
   }
 }
-
-
