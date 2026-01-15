@@ -1,8 +1,10 @@
 import 'package:crafty_bay/app/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/assets_path.dart';
 import '../../../../app/constants.dart';
+import '../../../common/presentation/providers/main_nav_controler_provider.dart';
 import '../widgets/Inc_dec_button.dart';
 import '../widgets/cart_item.dart';
 
@@ -17,24 +19,31 @@ class _CartListScreenState extends State<CartListScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(title: Text("Carts")),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: .symmetric(horizontal: 16),
-              child: ListView.builder(
-                itemCount: 10,
+    return PopScope(
+      onPopInvokedWithResult: (_, __,){
+        context.read<MainNavControlerProvider>().backToHome();
 
-                itemBuilder: (context, index) {
-                  return CartItem();
-                },
+      },
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(title: Text("Carts")),
+        body: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: .symmetric(horizontal: 16),
+                child: ListView.builder(
+                  itemCount: 10,
+
+                  itemBuilder: (context, index) {
+                    return CartItem();
+                  },
+                ),
               ),
             ),
-          ),
-          _buildTotalPriceAndChackuotSection(textTheme),
-        ],
+            _buildTotalPriceAndChackuotSection(textTheme),
+          ],
+        ),
       ),
     );
   }
