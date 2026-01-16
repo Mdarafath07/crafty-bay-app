@@ -21,7 +21,9 @@ class _WishListScreenState extends State<WishListScreen> {
       },
       canPop: false,
       child: Scaffold(
-        appBar: AppBar(title: Text("Wish List")),
+        appBar: AppBar(
+
+            title: Text("Wish List")),
         body: GridView.builder(
           itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
