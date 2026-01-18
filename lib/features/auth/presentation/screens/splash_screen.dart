@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushNamedAndRemoveUntil(
       context,
-      MainNavHolderScreen.name,
+      SingUpScreen.name,
       (predicates) => false,
     );
   }
