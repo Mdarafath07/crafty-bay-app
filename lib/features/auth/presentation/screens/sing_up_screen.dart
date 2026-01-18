@@ -222,4 +222,5 @@ class _SingUpScreenState extends State<SingUpScreen> {
     // TODO: implement dispose
     super.dispose();
   }
+
 }
