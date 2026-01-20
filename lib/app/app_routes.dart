@@ -17,12 +17,13 @@ class AppRoutes {
 
     if(setting.name == SplashScreen.name){
       widget = SplashScreen();
-    }else if(setting.name == SingUpScreen.name){
-      widget = SingUpScreen();
+    }else if(setting.name == SignUpScreen.name){
+      widget = SignUpScreen();
     }else if(setting.name == SignInScreen.name){
       widget = SignInScreen();
     }else if(setting.name == OtpVerificationScreen.name){
-      widget = OtpVerificationScreen();
+      final email = setting.arguments as String;
+      widget = OtpVerificationScreen(email: email,);
     }else if(setting.name == MainNavHolderScreen.name){
       widget = MainNavHolderScreen();
     }else if(setting.name == ProductListByCategoryScreen.name){

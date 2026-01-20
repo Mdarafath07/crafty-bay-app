@@ -5,23 +5,24 @@ import 'package:crafty_bay/core/services/network_caller.dart';
 import 'package:flutter/foundation.dart';
 
 import '../data/models/sing_up_params.dart';
+import '../data/models/verify_otp_params.dart';
 
-class SignUpProvider extends ChangeNotifier {
-  bool _isSignUpInProgress = false;
+class VerifyOtpProvider extends ChangeNotifier {
+  bool _isVerifyOtpInProgress = false;
 
-  bool get isSignUpInProgress => _isSignUpInProgress;
+  bool get isVerifyOtpInProgress => _isVerifyOtpInProgress;
 
   String? _errorMessage;
 
   String? get errorMessage => _errorMessage;
 
-  Future<bool> signUp(SignUpParams params) async {
+  Future<bool> verifyOtp(VerifyOtpParams params) async {
     bool isSuccess = false;
-    _isSignUpInProgress = true;
+    _isVerifyOtpInProgress = true;
     notifyListeners();
 
     final NetworkResponse response = await getNetworkCaller().postRequest(
-      url: Urls.signUpUrl,
+      url: Urls.verifyOtpUrl,
       body: params.toJson(),
     );
 
@@ -32,7 +33,7 @@ class SignUpProvider extends ChangeNotifier {
       _errorMessage = response.errorMessage;
     }
 
-    _isSignUpInProgress = false;
+    _isVerifyOtpInProgress = false;
     notifyListeners();
 
     return isSuccess;

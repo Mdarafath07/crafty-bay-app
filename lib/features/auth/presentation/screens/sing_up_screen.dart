@@ -1,39 +1,45 @@
-import 'package:crafty_bay/features/auth/data/models/sing_up_params.dart';
+
+import 'package:crafty_bay/app/app_colors.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sing_in_screen.dart';
-import 'package:crafty_bay/features/auth/presentation/widgets/app_logo.dart';
-import 'package:email_validator/email_validator.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../app/app_colors.dart';
+
+import '../../../common/presentation/widget/snack_ber_message.dart';
+import '../../data/models/sing_up_params.dart';
 import '../../providers/sing_up_provider.dart';
+import '../widgets/app_logo.dart';
 import 'otp_verification_screen.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({super.key});
 
-  static const String name = "/sing-up";
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
+  static const String name = '/sign-up';
 
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
-  final SingUpProvider _singUpProvider = SingUpProvider();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final SignUpProvider _signUpProvider = SignUpProvider();
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
-  final TextEditingController _phoneNumberTEController =
-      TextEditingController();
+  final TextEditingController _phoneTEController = TextEditingController();
   final TextEditingController _cityTEController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = TextTheme.of(context);
+
     return ChangeNotifierProvider(
-      create: (context) => _singUpProvider,
+      create: (_) => _signUpProvider,
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -41,104 +47,97 @@ class _SingUpScreenState extends State<SingUpScreen> {
               padding: const EdgeInsets.all(24),
               child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: .onUserInteraction,
                 child: Column(
+                  spacing: 8,
                   children: [
-                    const SizedBox(height: 40),
-                    const AppLogo(width: 100),
-                    const SizedBox(height: 16),
+                    AppLogo(width: 90),
+                    const SizedBox(height: 8),
                     Text(
-                      "Sign Up",
-                      style: Theme.of(context).textTheme.headlineLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                      'Sign Up',
+                      style: textTheme.headlineMedium?.copyWith(
+                        fontWeight: .bold,
+                      ),
                     ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      "Get started with your details",
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                    Text(
+                      'Get started with your details',
+                      style: textTheme.bodyLarge,
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: _firstNameTEController,
                       textInputAction: .next,
-                      decoration: const InputDecoration(hintText: "First Name"),
+                      decoration: InputDecoration(hintText: 'First name'),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return "First Name is required";
+                          return 'Enter your first name';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
                     TextFormField(
                       controller: _lastNameTEController,
                       textInputAction: .next,
-                      decoration: const InputDecoration(hintText: "Last Name"),
+                      decoration: InputDecoration(hintText: 'Last name'),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return "Last Name is required";
+                          return 'Enter your last name';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
                     TextFormField(
                       controller: _emailTEController,
                       textInputAction: .next,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(hintText: "Email"),
+                      keyboardType: .emailAddress,
+                      decoration: InputDecoration(hintText: 'Email'),
                       validator: (String? value) {
-                        if (EmailValidator.validate(value ?? "") == false) {
-                          return "Enter a valid email";
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Enter your valid email';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
                     TextFormField(
                       controller: _passwordTEController,
                       textInputAction: .next,
-                      obscureText: true,
-                      decoration: const InputDecoration(hintText: "Password"),
+                      decoration: InputDecoration(hintText: 'Password'),
                       validator: (String? value) {
-                        if ((value?.length ?? 0) < 6) {
-                          return "Password must be at least 6 characters";
+                        if (value?.isEmpty ?? true) {
+                          return 'Enter your password';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
                     TextFormField(
-                      controller: _phoneNumberTEController,
+                      controller: _phoneTEController,
                       textInputAction: .next,
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(hintText: "Phone"),
+                      keyboardType: .phone,
+                      decoration: InputDecoration(hintText: 'Phone'),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return "Phone number is required";
+                          return 'Enter your valid phone';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 12),
                     TextFormField(
                       controller: _cityTEController,
-                      textInputAction: .done,
-
-                      decoration: const InputDecoration(hintText: "City"),
+                      decoration: InputDecoration(hintText: 'City'),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return "City is required";
+                          return 'Enter your city';
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 24),
-                    Consumer<SingUpProvider>(
-                      builder: (context, singUpProvider, child) {
+                    Consumer<SignUpProvider>(
+                      builder: (context, signUpProvider, child) {
                         return Visibility(
-                          visible: singUpProvider.isSingUpInProgress == false,
-                          replacement: CircularProgressIndicator(),
+                          visible: signUpProvider.isSignUpInProgress == false,
+                          replacement: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                           child: FilledButton(
                             onPressed: _onTapSignUpButton,
                             child: Text('Sign Up'),
@@ -146,13 +145,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
                         );
                       },
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 8),
                     RichText(
                       text: TextSpan(
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey,
-                        ),
+                        style: textTheme.bodyMedium,
                         text: 'Already have an account? ',
                         children: [
                           TextSpan(
@@ -179,31 +175,29 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
   void _onTapSignUpButton() {
     if (_formKey.currentState!.validate()) {
-      _SingUp();
+      _signUp();
     }
   }
 
-  Future<void> _SingUp() async {
-    final bool _isSucess = await _singUpProvider.singUp(
-      SingUpParams(
+  Future<void> _signUp() async {
+    final bool isSuccess = await _signUpProvider.signUp(
+      SignUpParams(
         firstName: _firstNameTEController.text.trim(),
         lastName: _lastNameTEController.text.trim(),
         email: _emailTEController.text.trim(),
-
         password: _passwordTEController.text,
-        phonNeumber: _phoneNumberTEController.text.trim(),
+        phone: _phoneTEController.text.trim(),
         city: _cityTEController.text.trim(),
       ),
     );
-    if (_isSucess) {
-      Navigator.pushNamed(context, OtpVerificationScreen.name);
-
-    }  else{
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(_singUpProvider.errorMessage!),
-        ),
+    if (isSuccess) {
+      Navigator.pushNamed(
+        context,
+        OtpVerificationScreen.name,
+        arguments: _emailTEController.text.trim(),
       );
+    } else {
+     showSnackBarMessage(context, _signUpProvider.errorMessage ?? 'Something went wrong');
     }
   }
 
@@ -217,13 +211,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
     _lastNameTEController.dispose();
     _emailTEController.dispose();
     _passwordTEController.dispose();
-    _phoneNumberTEController.dispose();
+    _phoneTEController.dispose();
     _cityTEController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
-
-
-
-
 }

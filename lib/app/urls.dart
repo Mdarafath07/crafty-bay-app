@@ -1,5 +1,6 @@
 class Urls {
-  static const String _baseUrls = "https://ecom-rs8e.onrender.com/api";
-  static const String SingUpUrl = "$_baseUrls/auth/signup";
+  static const String _baseUrl = 'https://ecom-rs8e.onrender.com/api';
 
+  static const String signUpUrl = '$_baseUrl/auth/signup';
+  static const String verifyOtpUrl = '$_baseUrl/auth/verify-otp';
 }
